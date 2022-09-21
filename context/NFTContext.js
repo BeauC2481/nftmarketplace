@@ -80,7 +80,7 @@ export const NFTProvider = ({ children }) => {
     try {
       const added = await client.add({ content: file });
 
-      const url = `https://nftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
+      const url = `https://beausnftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
 
       return url;
     } catch (error) {
@@ -116,7 +116,7 @@ export const NFTProvider = ({ children }) => {
 
     try {
       const added = await client.add(data);
-      const url = `https://nftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
+      const url = `https://beausnftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
       await createSale(url, price);
       router.push('/');
     } catch (error) {
