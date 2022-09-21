@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Web3Modal from 'web3modal';
 import { ethers } from 'ethers';
 import axios from 'axios';
-import { create as ipfsHttpClient } from 'ipfs-http-client';
 
 import { create as ipfsHttpClient } from 'ipfs-http-client';
 import { MarketAddress, MarketAddressABI } from './constants';
@@ -81,7 +80,7 @@ export const NFTProvider = ({ children }) => {
     try {
       const added = await client.add({ content: file });
 
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      const url = `https://nftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
 
       return url;
     } catch (error) {
@@ -117,7 +116,7 @@ export const NFTProvider = ({ children }) => {
 
     try {
       const added = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      const url = `https://nftmarketplace.infura-ipfs.io/ipfs/${added.path}`;
       await createSale(url, price);
       router.push('/');
     } catch (error) {
@@ -165,4 +164,5 @@ export const NFTProvider = ({ children }) => {
     </NFTContext.Provider>
   );
 };
+
 
