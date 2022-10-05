@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['https://decentratwitter.infura-ipfs.io'],
+    domains: ['beausnftmarketplace.infura-ipfs.io'],
   },
 };
 
