@@ -7,6 +7,7 @@ const ListedNFTs = () => {
   const { fetchMyNFTsOrListedNFTs } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const targetNetworkId = '0x5';
 
   useEffect(() => {
     fetchMyNFTsOrListedNFTs('fetchItemsListed')
@@ -15,7 +16,35 @@ const ListedNFTs = () => {
         setIsLoading(false);
       });
   }, []);
+  
+      const checkNetwork = async () => {
+      const currentChainId = await window.ethereum.request({
+          method: 'eth_chainId',
+        });
+        if (currentChainId == targetNetworkId) {
+          loadPosts();
+          console.log(currentChainId)
+        } else {
+          window.alert("No Ethereum connection: Wrong network, connect to Goerli Testnet")
+          console.log(currentChainId);
+        }
+    };
 
+    useEffect(() => {
+      if (window.ethereum) {
+        window.ethereum.on("chainChanged", () => {
+          window.location.reload();
+        });
+        window.ethereum.on("accountsChanged", () => {
+          window.location.reload();
+        });
+      }
+    });
+
+    useEffect(() => {
+      checkNetwork();
+    });
+  
   if (isLoading) {
     return (
       <div className="flexStart min-h-screen">
